@@ -25,8 +25,8 @@ include_directories(
   ${CMAKE_BINARY_DIR}/external/android-emugl/host/libs/GLESv2_dec
   ${CMAKE_SOURCE_DIR}/external/android-emugl/host/libs/renderControl_dec
   ${CMAKE_BINARY_DIR}/external/android-emugl/host/libs/renderControl_dec
-  ${CMAKE_SOURCE_DIR}/external/cpu_features/include
-#   ${CMAKE_SOURCE_DIR}/external/sdbus-cpp/include
+  $<TARGET_PROPERTY:CpuFeatures::cpu_features,INTERFACE_INCLUDE_DIRECTORIES>
+  $<TARGET_PROPERTY:SDBusCpp::sdbus-c++,INTERFACE_INCLUDE_DIRECTORIES>
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBINDERFS_PATH=\"\\\"${BINDERFS_PATH}\\\"\"")
@@ -59,7 +59,6 @@ add_library(anbox-protobuf
 target_link_libraries(anbox-protobuf
     ${PROTOBUF_LITE_LIBRARIES})
 
-# set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
 set(XML2CPP /usr/bin/sdbus-c++-xml2cpp)
 
 macro(DBusServer BaseName)
@@ -401,7 +400,7 @@ target_link_libraries(anbox-core
   ${MIRCLIENT_LIBRARIES}
   ${LIBSYSTEMD_LDFLAGS}
   ${LIBSYSTEMD_LIBRARIES}
-  cpu_features
+  CpuFeatures::cpu_features
   pthread
   process-cpp
   emugl_common
