@@ -26,7 +26,7 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/external/android-emugl/host/libs/renderControl_dec
   ${CMAKE_BINARY_DIR}/external/android-emugl/host/libs/renderControl_dec
   ${CMAKE_SOURCE_DIR}/external/cpu_features/include
-  ${CMAKE_SOURCE_DIR}/external/sdbus-cpp/include
+#   ${CMAKE_SOURCE_DIR}/external/sdbus-cpp/include
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBINDERFS_PATH=\"\\\"${BINDERFS_PATH}\\\"\"")
@@ -59,7 +59,8 @@ add_library(anbox-protobuf
 target_link_libraries(anbox-protobuf
     ${PROTOBUF_LITE_LIBRARIES})
 
-set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
+# set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
+set(XML2CPP /usr/bin/sdbus-c++-xml2cpp)
 
 macro(DBusServer BaseName)
     add_custom_command(
@@ -410,7 +411,7 @@ target_link_libraries(anbox-core
   OpenGLESDispatch
   OpenglCodecCommon
   anbox-protobuf
-  sdbus-c++
+  SDBusCpp::sdbus-c++
   xdg)
 
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/../external/sdbus-cpp/src/sdbus-cpp-build/)
