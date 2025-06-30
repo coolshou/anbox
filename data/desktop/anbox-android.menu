@@ -9,7 +9,7 @@
 		<Include>
 			<Or>
 				<Category>Anbox</Category>
-				<Filename>appmgr.desktop</Filename>
+				<Filename>anbox.desktop</Filename>
 			</Or>
 		</Include>
 	</Menu>
