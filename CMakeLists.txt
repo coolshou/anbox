@@ -1,5 +1,5 @@
+cmake_minimum_required(VERSION 3.6)
 project(anbox C CXX)
-cmake_minimum_required(VERSION 2.8.2)
 
 include(CTest)
 include(GNUInstallDirs)
@@ -56,12 +56,17 @@ endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# sudo apt install libboost-all-dev
+find_package(Boost REQUIRED COMPONENTS log log_setup)
 find_package(Boost COMPONENTS filesystem log serialization system thread program_options)
 find_package(PkgConfig)
 find_package(Threads)
 find_package(EGL REQUIRED)
 find_package(GLESv2 REQUIRED)
 find_package(Protobuf REQUIRED)
+find_package(CpuFeatures REQUIRED)
+# libsdbus-c++-dev
+find_package(sdbus-c++ REQUIRED)
 
 pkg_check_modules(SDL2 sdl2 REQUIRED)
 pkg_check_modules(SDL2_IMAGE SDL2_image REQUIRED)
@@ -136,7 +141,7 @@ set(ANBOX_STATEDIR_FULL "${CMAKE_INSTALL_FULL_LOCALSTATEDIR}/lib/anbox")
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/anbox/build/config.h.in
                ${CMAKE_CURRENT_SOURCE_DIR}/src/anbox/build/config.h)
 
-add_subdirectory(external)
+add_subdirectory(external EXCLUDE_FROM_ALL)
 add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(android)
