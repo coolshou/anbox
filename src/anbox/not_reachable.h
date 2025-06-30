@@ -20,6 +20,7 @@
 #ifndef ANBOX_UTIL_NOT_REACHABLE_H_
 #define ANBOX_UTIL_NOT_REACHABLE_H_
 
+#include <cstdint>
 #include <stdexcept>
 #include <string>
 
@@ -35,6 +36,6 @@ struct NotReachable : public std::logic_error {
 /// @brief not_reachable throws NotReachable.
 [[noreturn]] void not_reachable(const std::string& function,
                                 const std::string& file, std::uint32_t line);
-}
+}  // namespace anbox::util
 
 #endif

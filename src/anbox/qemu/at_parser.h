@@ -18,6 +18,7 @@
 #ifndef ANBOX_QEMU_AT_PARSER_H_
 #define ANBOX_QEMU_AT_PARSER_H_
 
+#include <cstdint>
 #include <functional>
 #include <map>
 #include <memory>
@@ -42,5 +43,5 @@ class AtParser {
 
   std::map<std::string, CommandHandler> handlers_;
 };
-}
+}  // namespace anbox::qemu
 #endif

@@ -18,9 +18,10 @@
 #ifndef ANBOX_LOGGER_H_
 #define ANBOX_LOGGER_H_
 
-#include <boost/optional.hpp>
-
 #include <memory.h>
+
+#include <boost/optional.hpp>
+#include <cstdint>
 #include <string>
 
 #include "anbox/do_not_copy_or_move.h"
@@ -49,7 +50,7 @@ class Logger : public DoNotCopyOrMove {
 
   virtual void Init(const Severity& severity = Severity::kWarning) = 0;
 
-  bool SetSeverityFromString(const std::string &severity);
+  bool SetSeverityFromString(const std::string& severity);
   virtual void SetSeverity(const Severity& severity) = 0;
   virtual Severity GetSeverity() = 0;
 
@@ -126,7 +127,7 @@ std::ostream& operator<<(std::ostream& out, const Logger::Location& location);
 Logger& Log();
 // SetLog installs the given logger as mcs-wide default logger.
 void SetLogger(const std::shared_ptr<Logger>& logger);
-}
+}  // namespace anbox
 
 #define TRACE(...)     \
   anbox::Log().Tracef( \

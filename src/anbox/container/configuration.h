@@ -18,9 +18,10 @@
 #ifndef ANBOX_CONTAINER_CONFIGURATION_H_
 #define ANBOX_CONTAINER_CONFIGURATION_H_
 
+#include <cstdint>
 #include <string>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 namespace anbox::container {
 struct DeviceSpecification {
@@ -33,5 +34,5 @@ struct Configuration {
   std::unordered_map<std::string, DeviceSpecification> devices;
   std::vector<std::string> extra_properties;
 };
-}
+}  // namespace anbox::container
 #endif
